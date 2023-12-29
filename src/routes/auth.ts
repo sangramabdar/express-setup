@@ -1,22 +1,22 @@
 import { Router } from "express";
 import passport from "../lib/passport";
 import { isValidToken } from "../utils/middlewares";
-import authController from "../controllers/auth.controller";
+import { authController } from "../controllers";
 
-const auth = Router();
+const authRouter = Router();
 
-auth.get(
+authRouter.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
-auth.get(
+authRouter.get(
   "/google/callback",
   passport.authenticate("google", { session: false }),
   authController.googleCallback
 );
 
-auth.get("/success", isValidToken, authController.success);
-auth.get("/failure", authController.failure);
+authRouter.get("/success", isValidToken, authController.success);
+authRouter.get("/failure", authController.failure);
 
-export default auth;
+export { authRouter };

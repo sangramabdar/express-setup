@@ -7,7 +7,12 @@ const get = (req, res, next) => {
 
 const notFound = (req, res, next) => {
   const response = new ResponseBuilder();
-  response.setStatusCode(404).setErrors(["not found"]);
+
+  response
+    .setStatusCode(404)
+    .setErrors(["not found"])
+    .setOK(false)
+    .setData(null);
 
   res.statusCode = 404;
   res.json(response);
@@ -18,4 +23,4 @@ const baseController = {
   notFound,
 };
 
-export default baseController;
+export { baseController };

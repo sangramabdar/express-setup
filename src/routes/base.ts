@@ -1,9 +1,9 @@
 import { Router } from "express";
-import baseController from "../controllers/base.controller";
+import { baseController } from "../controllers";
 
-const base = Router();
+const baseRouter = Router();
 
-base.get("/", baseController.get);
-base.use("*", baseController.notFound);
+baseRouter.get("/", baseController.get);
+baseRouter.use("*", baseController.notFound);
 
-export default base;
+export { baseRouter };

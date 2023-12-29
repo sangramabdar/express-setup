@@ -4,9 +4,8 @@ import morgan from "morgan";
 import passport from "../lib/passport";
 import { handleClientErrors, handleServerErrors } from "../utils/middlewares";
 
-import auth from "../routes/auth";
-import base from "../routes/base";
-import baseController from "../controllers/base.controller";
+import { baseRouter, authRouter } from "../routes";
+import { baseController } from "../controllers";
 
 const app: Application = express();
 
@@ -15,12 +14,12 @@ app.use(
     ":remote-addr  :method :url :status :res[content-length] - :response-time ms"
   )
 );
+
 app.use(cookieParser());
 app.use(passport.initialize());
 
-app.use("/", base);
-app.use("/auth", auth);
-
+app.use("/", baseRouter);
+app.use("/auth", authRouter);
 app.use("*", baseController.notFound);
 
 //error middlewares

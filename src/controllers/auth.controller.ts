@@ -17,4 +17,4 @@ const authController = {
   failure,
 };
 
-export default authController;
+export { authController };
