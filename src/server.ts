@@ -1,9 +1,6 @@
-import { config, initializeEnvironment } from "./config/environment.config";
-
-initializeEnvironment();
-
+import appConfig from "./config/app.config";
 import app from "./config/express.config";
 
-app.listen(config.PORT, (): void => {
-  console.log("SERVER IS UP ON PORT:", config.PORT);
+app.listen(appConfig.PORT, (): void => {
+  console.log("SERVER IS UP ON PORT:", appConfig.PORT);
 });

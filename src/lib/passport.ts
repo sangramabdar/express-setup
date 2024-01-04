@@ -1,21 +1,21 @@
 import passport from "passport";
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 import { generateToken } from "../utils/jwt";
-import { config } from "../config/environment.config";
+import appConfig from "../config/app.config";
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: config.GOOGLE_CLIENT_ID,
-      clientSecret: config.GOOGLE_CLIENT_SECRET,
-      callbackURL: config.GOOGLE_CALLBACK_URL,
+      clientID: appConfig.GOOGLE_CLIENT_ID,
+      clientSecret: appConfig.GOOGLE_CLIENT_SECRET,
+      callbackURL: appConfig.GOOGLE_CALLBACK_URL,
     },
     async function (accessToken, refreshToken, profile, done) {
       const token = await generateToken(
         {
           name: profile.displayName,
         },
-        config.JWT_SECRET
+        appConfig.JWT_SECRET
       );
       return done(null, token);
     }
