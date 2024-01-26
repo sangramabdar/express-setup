@@ -1,7 +1,7 @@
 import passport from "passport";
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 import { generateToken } from "../utils/jwt";
-import appConfig from "../config/app.config";
+import appConfig from "../config/environment.config";
 
 passport.use(
   new GoogleStrategy(
