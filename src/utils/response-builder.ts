@@ -15,8 +15,8 @@ class ResponseBuilder {
     return this;
   }
 
-  setErrors(erros: any) {
-    this.errors = erros;
+  setErrors(errors: any) {
+    this.errors = errors;
     return this;
   }
 
